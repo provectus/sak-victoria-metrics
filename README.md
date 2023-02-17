@@ -5,7 +5,7 @@ Install the [victoria-metrics-cluster](https://github.com/VictoriaMetrics/helm-c
 ``` hcl
 module scaling {
   source        = "github.com/provectus/sak-victoria-metrics"
-  cluster_name  = "swiss-army-kube"
+  cluster_name  = module.eks.cluster_id
 }
 ```
 
@@ -27,6 +27,11 @@ prometheus:
       - url: http://victoria-metrics-cluster-vminsert:8480/insert/0/prometheus/api/v1/write
 ```
 
+## Requirements
+
+```
+terraform >= 1.1
+ ```
 
 ## Providers
 
