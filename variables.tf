@@ -28,18 +28,6 @@ variable "module_depends_on" {
   description = "A list of explicit dependencies"
 }
 
-variable "cluster_name" {
-  type        = string
-  default     = null
-  description = "A name of the Amazon EKS cluster"
-}
-
-variable "domains" {
-  type        = list(string)
-  default     = ["local"]
-  description = "A list of domains to use for ingresses"
-}
-
 variable "chart_version" {
   type        = string
   description = "A Helm Chart version"
@@ -64,8 +52,3 @@ variable "chart_repository" {
   default     = "https://victoriametrics.github.io/helm-charts/"
 }
 
-variable "tags" {
-  type        = map(string)
-  default     = {}
-  description = "A tags for attaching to new created AWS resources"
-}
