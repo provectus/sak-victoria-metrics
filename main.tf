@@ -1,13 +1,3 @@
-resource "kubernetes_namespace" "this" {
-  depends_on = [
-    var.module_depends_on
-  ]
-  count = var.namespace == "" ? 1 - local.argocd_enabled : 0
-  metadata {
-    name = var.namespace_name
-  }
-}
-
 resource "local_file" "namespace" {
   count = local.argocd_enabled
   depends_on = [
@@ -25,7 +15,7 @@ resource "local_file" "namespace" {
 
 locals {
   argocd_enabled = length(var.argocd) > 0 ? 1 : 0
-  namespace      = coalescelist(var.namespace == "" && local.argocd_enabled > 0 ? [{ "metadata" = [{ "name" = var.namespace_name }] }] : kubernetes_namespace.this, [{ "metadata" = [{ "name" = var.namespace }] }])[0].metadata[0].name
+  namespace      = var.namespace
 }
 
 resource "helm_release" "this" {
@@ -108,6 +98,9 @@ locals {
         "automated" = {
           "prune"    = true
           "selfHeal" = true
+        }
+        "syncOptions" = {
+          "createNamespace" = true
         }
       }
     }
