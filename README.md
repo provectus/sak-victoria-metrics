@@ -2,6 +2,12 @@
 
 Install the [victoria-metrics-cluster](https://github.com/VictoriaMetrics/helm-charts/tree/master/charts/victoria-metrics-cluster).
 
+This module is part of Swiss Army Kube project. Checkout main repository and contributing guide.
+
+**[Swiss Army Kube](https://github.com/provectus/swiss-army-kube)**
+|
+**[Contributing Guide](https://github.com/provectus/swiss-army-kube/blob/master/CONTRIBUTING.md)**
+
 ## Example
 
 ```hcl
